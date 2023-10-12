@@ -12,7 +12,7 @@ import Footer from './components/footer/Footer';
 function App() {
 
   const url = "https://my-app-three-flame.vercel.app/data.json";
-  
+
   const [ data, setData ] = useState ( null );
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function App() {
         <Route path="" element={<Cards data={data} />}  />
         <Route path="/tuexperiencia" element={<FormExp />} />
         <Route path="/ingresar" element={<Login />} />
-        <Route path="/detalle/:id" element={<Detail />} />
+        <Route path="/detalle/:id" element={<Detail data={data}/>} />
       </Routes>
         
       <Footer />

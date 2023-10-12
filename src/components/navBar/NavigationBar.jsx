@@ -9,7 +9,7 @@ const NavigationBar = () => {
         <Link to="/" className='nav-link'>
           <Navbar.Brand>
             <img
-              src="logo.png"
+              src="/logo.png"
               width="30"
               height="30"
               className="d-inline-block align-top"
@@ -26,7 +26,7 @@ const NavigationBar = () => {
               Creá tue experiencia
             </Link>
           </Nav>
-          <Form inline>
+          <Form >
             <Row>
             <Col xs="auto">
                 <Form.Control
@@ -40,7 +40,7 @@ const NavigationBar = () => {
             </Col>
             </Row>
         </Form>
-        <Button variant="secondary" className=" m-2" type="submit">Ingresar<Link to="/Ingresar" className='nav-link'> </Link> </Button>
+            <Button variant="secondary" className=" m-2" ><Link to="/ingresar" className="nav-link"> Ingresar </Link></Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>
