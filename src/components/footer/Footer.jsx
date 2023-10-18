@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <>
       <Navbar bg="dark" data-bs-theme="dark" className="bg-body-tertiary" fixed="bottom">
-        <Container>
+        <Container fluid>
           <Nav className="w-100 justify-content-between">
             <Nav.Link className="ms-3" disabled>
               Copyright © 2023 Viajemos

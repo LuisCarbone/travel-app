@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 const NavigationBar = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
-      <Container>
+      <Container fluid>
         <Link to="/" className='nav-link'>
           <Navbar.Brand>
             <img

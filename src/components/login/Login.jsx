@@ -1,5 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { Container } from "react-bootstrap";
+import { Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
+
 
 const validate = (form) => {
     // crear un objeto vacio donde se agregaran los errores ocurridos y que luego se devolvera
@@ -29,20 +33,24 @@ const Login = () => {
     const handleChange = (event) => {
         // lo siguiente es poco practico en casos de formularios de muchos campos
 //        if (event.target.name === "email") {
-//            setForm({...form, email: event.target.value}); // ...form = se llama spredoperator, y evita que se sobreescriba lo existente
-//                                                            // es decir que cuando mando email no se pise password y viceversa
+//            setForm({...form, email: event.target.value}); 
+                // a los 3 puntos delatnte del form se los llama "spread operator", 
+                // y evita que se sobreescriba lo existente en el array u objeto
+                // es decir que cuando mando email no se pise password y viceversa
+
 //        };
 //
 //        if (event.target.name === "password") {
-//            setForm({password: event.target.value});
+//            setForm({...form, password: event.target.value});
 //        };
 
-        // todo lo anterior se puede reemplazar por lo sihuiente
+        // todo lo anterior se puede reemplazar por lo siguiente
         const property = event.target.name;
         const value = event.target.value;
         setForm ({...form, [property] : value});
         // hasta acá , los "[]" se denominan "braket notation" y reemplazan el contenido
-        // por el valor que tiene almacenado en vez del literal
+        // por el valor que tiene almacenado en vez del literal, de esta manera [property] 
+        // se considera en este ejemplo como "email" y/o "password" segun corresponda
 
         setErrors (validate({...form, [property] : value}))
     }
@@ -54,26 +62,41 @@ const Login = () => {
         }
     }
 
+    // el submit ya no lo usamos desde el boton sino desde el formualrio
     return (
-        // l submit ya no lo usamos desde el boton sonodesde el formualrio
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="email">Correo electrónico:</label>
-                <input type="text" name="email" value={form.email} onChange={handleChange}></input>
-                {errors.email && <p>{errors.email}</p>}
-            </div>
-            <div>
-                <label htmlFor="password">Contraseña:</label>
-                <input type="text" name="password" value={form.password} onChange={handleChange}></input>
-                {errors.password && <p>{errors.password}</p>}
-            </div>
-            <button>Ingresar</button>
+        <Container fluid >
+            <Row>
+                <Col xl={8}>
+                    HOLA
+                </Col>
+                <Col xl={4}>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label htmlFor="email">Correo electrónico:</label>
+                            <input type="text" name="email" value={form.email} onChange={handleChange}></input>
+                            {errors.email && <p>{errors.email}</p>}
+                        </div>
+                        <div>
+                            <label htmlFor="password">Contraseña:</label>
+                            <input type="text" name="password" value={form.password} onChange={handleChange}></input>
+                            {errors.password && <p>{errors.password}</p>}
+                        </div>
+                        <button>Ingresar</button>
 
-        </form>
-    )
+                    </form>
+                </Col>
+            </Row>
+        </Container>
+    );
 }
 
 export default Login;
 
 // Regexp
 // /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+
+/*
+
+
+
+*/

@@ -1,8 +1,9 @@
 import './App.css'
-import { useEffect, useState } from 'react'
-import { Routes, Route } from "react-router-dom"
+import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 
-import NavigationBar from './components/navBar/NavigationBar';
+import NavigationBar from './components/navigationBar/NavigationBar';
 import Cards from './components/cards/Cards';
 import FormExp from './components/formExp/FormExp';
 import Login from './components/login/Login';
@@ -36,15 +37,22 @@ function App() {
 
   return (
     <>
-      <NavigationBar  />
-      <Routes>
-        <Route path="" element={<Cards data={data} />}  />
-        <Route path="/tuexperiencia" element={<FormExp />} />
-        <Route path="/ingresar" element={<Login />} />
-        <Route path="/detalle/:id" element={<Detail data={data}/>} />
-      </Routes>
+      <NavigationBar />
+
+      <Container fluid className='desktop'>
+
+        <Routes>
+          <Route path="" element={<Cards data={data} />}  />
+          <Route path="/tuexperiencia" element={<FormExp />} />
+          <Route path="/ingresar" element={<Login />} />
+          <Route path="/detalle/:id" element={<Detail data={data}/>} />
+        </Routes>
+
+      </Container>
         
+      <Container fluid>
       <Footer />
+      </Container>
       
     </>
     )
