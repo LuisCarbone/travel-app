@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import { BrowserRouter } from "react-router-dom"; // desestructuramos para cargar solo BrowerRouter
 
+
+/// REDUX - chequear
 ReactDOM.createRoot(document.getElementById('root')).render (
 /*   <React.StrictMode> */
     <BrowserRouter>

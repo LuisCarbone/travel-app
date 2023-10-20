@@ -2,7 +2,13 @@ import React from 'react';
 import {Nav, Navbar, Container, Form, Col, Row, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom"
 
-const NavigationBar = () => {
+
+const NavigationBar = (props) => {
+  const handleClick = () =>{
+    props.setIsLoged (false);
+    localStorage.removeItem("isLoged");
+  }
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
       <Container fluid>
@@ -14,8 +20,8 @@ const NavigationBar = () => {
               height="30"
               className="d-inline-block align-top"
               alt=""
-            />
-              
+            /> Viajemos.com
+             
           </Navbar.Brand>
         </Link>
 
@@ -40,7 +46,9 @@ const NavigationBar = () => {
             </Col>
             </Row>
         </Form>
-            <Button variant="secondary" className=" m-2" ><Link to="/ingresar" className="nav-link"> Ingresar </Link></Button>
+        { props.isLoged ? 
+            <Nav.Link onClick={handleClick} style={{marginLeft: "15px"}}>Cerrar sesión</Nav.Link>
+          : <Link to="/ingresar" className="nav-link" style={{marginLeft: "15px"}}> Ingresar </Link>}
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -15,6 +15,7 @@ function App() {
   const url = "https://my-app-three-flame.vercel.app/data.json";
 
   const [ data, setData ] = useState ( null );
+  const [ isLoged, setIsLoged ] = useState (false);
 
   useEffect(() => {
     const fetchData = async() => {
@@ -33,18 +34,21 @@ function App() {
       }
     }
     fetchData()
+
+    const loginStorage = localStorage.getItem ("isLoged");
+    loginStorage && setIsLoged (true);
   }, [])
 
   return (
     <>
-      <NavigationBar />
+      <NavigationBar isLoged={isLoged} setIsLoged={setIsLoged} />
 
       <Container fluid className='desktop'>
 
         <Routes>
           <Route path="" element={<Cards data={data} />}  />
           <Route path="/tuexperiencia" element={<FormExp />} />
-          <Route path="/ingresar" element={<Login />} />
+          <Route path="/ingresar" element={<Login isLoged={isLoged} setIsLoged={setIsLoged} /> } />
           <Route path="/detalle/:id" element={<Detail data={data}/>} />
         </Routes>
 

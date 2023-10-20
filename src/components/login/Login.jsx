@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Container } from "react-bootstrap";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
+import { useNavigate  } from "react-router-dom";
+import { Container,  Row, Col, Form, Button } from "react-bootstrap";
 
 
 const validate = (form) => {
@@ -16,7 +15,8 @@ const validate = (form) => {
 }
 
 
-const Login = () => {
+const Login = ( { setIsLoged } ) => {
+    const navigate = useNavigate();
 
     // en vez de almacenar cada variable en un estado, guardamos un objeto que contiene a todos los inputs
     const [ form, setForm ] = useState({
@@ -58,8 +58,14 @@ const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
         if (Object.keys(errors).length === 0) {
-            alert("login exitoso");
+            if (form.email === 'luis@mail.com' && form.password === '1234567890'){
+                alert("login exitoso");
+                setIsLoged (true);
+                localStorage.setItem("isLoged", true);
+                navigate("/");
+            } else alert("Datos incorrectos");
         }
+
     }
 
     // el submit ya no lo usamos desde el boton sino desde el formualrio
@@ -70,20 +76,20 @@ const Login = () => {
                     HOLA
                 </Col>
                 <Col xl={4}>
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor="email">Correo electrónico:</label>
-                            <input type="text" name="email" value={form.email} onChange={handleChange}></input>
+                    <Form onSubmit={handleSubmit} style={{width: "40%", margin: "30px auto"}}>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="email">Correo electrónico:</Form.Label>
+                            <Form.Control type="text" name="email" value={form.email} onChange={handleChange}></Form.Control>
                             {errors.email && <p>{errors.email}</p>}
-                        </div>
-                        <div>
-                            <label htmlFor="password">Contraseña:</label>
-                            <input type="text" name="password" value={form.password} onChange={handleChange}></input>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label htmlFor="password">Contraseña:</Form.Label>
+                            <Form.Control type="text" name="password" value={form.password} onChange={handleChange}></Form.Control>
                             {errors.password && <p>{errors.password}</p>}
-                        </div>
-                        <button>Ingresar</button>
+                        </Form.Group>
+                        <Button>Ingresar</Button>
 
-                    </form>
+                    </Form>
                 </Col>
             </Row>
         </Container>
